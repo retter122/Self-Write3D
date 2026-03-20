@@ -33,7 +33,7 @@ static float YAng = 0.f;
 
 static float MouseSens = 0.001f;
 
-static unsigned char Menu = GameMenu;
+static uint8_t Menu = GameMenu;
 
 static float FOV = 2.f;
 
