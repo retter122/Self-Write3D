@@ -1,16 +1,23 @@
 #pragma once
 #include <Windows.h>
+#include <stdint.h>
 #include "Graphics2D.h"
+
+
 // COLOR MACROS
 #define ToRGB(r, g, b) (r << 16) | (g << 8) | b
+
+
 // LIGHT DATA
 extern float* LightPos = 0;
-extern unsigned int LightLen = 0;
+extern uint32_t LightLen = 0;
+
+
 // ADD NEW LIGHT TO SCENE FUCTION
 static void AddNewLight(float X, float Y, float Z) {
 	float* LightBuf = malloc(LightLen + 3);
 
-	for (unsigned int i = 0; i < LightLen; ++i) LightBuf[i] = LightPos[i];
+	for (uint32_t i = 0; i < LightLen; ++i) LightBuf[i] = LightPos[i];
 	LightBuf[LightLen] = X; LightBuf[LightLen + 1] = Y; LightBuf[LightLen + 2] = Z;
 
 	free(LightPos);
@@ -18,6 +25,8 @@ static void AddNewLight(float X, float Y, float Z) {
 
 	LightLen += 3;
 }
+
+
 // 3D GRAPHICS DATA
 extern float* ZBuffer = 0;
 
@@ -27,6 +36,8 @@ static float FOVX;
 static float FOVY;
 extern float NearSize = 1.f;
 extern float FarZone = 100.f;
+
+
 // SET FOV FUNCTION
 static void __fastcall SetFOV(float FOV) {
 	FOVX = (float)Bmi.biWidth / (float)MaxSide * FOV;
@@ -34,11 +45,12 @@ static void __fastcall SetFOV(float FOV) {
 
 	NearSize = (float)MaxSide / ((1.f * tanf(FOVX / 2.f)) * 2.f);
 }
+
+
 // CLEAR 3D BUFFER FUNCTION
 extern void __fastcall ClearZBuffer();
-// C REALIZATION ClearZBuffer FUNCTION {
-//	for (unsigned int i = 0; i < Bmi.biSizeImage; ++i) ZBuffer[i] = FarZone;
-//}
+
+
 // DRAW 3D FIGURE FUNCTION
 extern void __fastcall Draw3DFigure(const float* Vertexies, unsigned int NumVertex, const float* Colors, const float* Normals) {
 	for (unsigned int i = 0; i < NumVertex; i += 3) {
