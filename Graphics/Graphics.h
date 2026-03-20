@@ -17,10 +17,8 @@
 static void __fastcall InitGraphics() {
 	MaxSide = max(Bmi.biWidth, Bmi.biHeight);
 
-	PixelBuffer = malloc(Bmi.biSizeImage = ((Bmi.biWidth * Bmi.biHeight + 4) << 2));
-	ZBuffer = malloc(Bmi.biSizeImage);
-
-	Bmi.biSizeImage >>= 4;
+	PixelBuffer = malloc((Bmi.biSizeImage = (Bmi.biWidth * Bmi.biHeight + 4)) * sizeof(uint32_t));
+	ZBuffer = malloc(Bmi.biSizeImage * sizeof(float));
 }
 
 
@@ -28,13 +26,8 @@ static void __fastcall InitGraphics() {
 static void __fastcall ResizePixelBuffer() {
 	MaxSide = max(Bmi.biWidth, Bmi.biHeight);
 
-	free(PixelBuffer);
-	free(ZBuffer);
-
-	PixelBuffer = malloc(Bmi.biSizeImage = ((Bmi.biWidth * Bmi.biHeight + 4) << 2));
-	ZBuffer = malloc(Bmi.biSizeImage);
-
-	Bmi.biSizeImage >>= 4;
+	PixelBuffer = relloc(PixelBuffer, (Bmi.biSizeImage = (Bmi.biWidth * Bmi.biHeight + 4)) * sizeof(uint32_t));
+	ZBuffer = relloc(ZBuffer, Bmi.biSizeImage * sizeof(float));
 
 	NearSize = (float)MaxSide / ((1.f * tanf(FOVX / 2.f)) * 2.f);
 }
@@ -46,8 +39,7 @@ static void __fastcall RotateFigureX(float* Figure, unsigned int NumVertex, floa
 	for (unsigned int i = 0; i < NumVertex; i += 3) {
 		YTr += Figure[i + 1];
 		ZTr += Figure[i + 2];
-	}
-	YTr /= (float)(NumVertex / 3); ZTr /= (float)(NumVertex / 3);
+	} YTr /= (float)(NumVertex / 3); ZTr /= (float)(NumVertex / 3);
 
 	for (unsigned int i = 0; i < NumVertex; i += 3) {
 		float VerY = Figure[i + 1] - YTr, VerZ = Figure[i + 2] - ZTr;
