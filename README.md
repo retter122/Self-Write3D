@@ -24,21 +24,21 @@ Prefix may be:
 
 Graphic module contains several structures, whitch contains graphic data:
     1. graphic_state - contains general data, neccesary to render image:
-        ```
-        typedef struct {
-            float screen_dst;           // distance to screen in 3D space
-            float fov_x, fov_y;         // Field of view in radians
+```C
+typedef struct {
+    float screen_dst;           // distance to screen in 3D space
+    float fov_x, fov_y;         // Field of view in radians
 
-            uint32_t* pixels;           // pixel array
-            uint32_t width, height;     // width and height 
+    uint32_t* pixels;           // pixel array
+    uint32_t width, height;     // width and height 
 
-            mat4x4 *transform;          // transform matrix
-            mat1x4 *translate;          // translate matrix
+    mat4x4 *transform;          // transform matrix
+    mat1x4 *translate;          // translate matrix
 
-            void (*vertex_shader)(polygon *input, polygon *output, mat4x4 *transform, mat1x4 *translate);   // vertex shader
-            uint32_t (*pixel_shader)(mat1x4* input, mat1x4* position, mat1x4* normal);                      // pixel shader
-        } graphic_state;
-        ```
+    void (*vertex_shader)(polygon *input, polygon *output, mat4x4 *transform, mat1x4 *translate);   // vertex shader
+    uint32_t (*pixel_shader)(mat1x4* input, mat1x4* position, mat1x4* normal);                      // pixel shader
+} graphic_state;
+```
     
     2. thread_worker - contains data using to render polygon. Neccesary to use multi-threading in future:
         ```
@@ -57,4 +57,4 @@ Graphic module contains several structures, whitch contains graphic data:
             mat4x4 vertex;                  // contains three vertex of polygon
             mat1x4 color1, color2, color3;  // contains color of each vertex
         } polygon;
-        ```
+        '''
