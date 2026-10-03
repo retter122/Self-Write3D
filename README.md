@@ -58,3 +58,8 @@ typedef struct {
     mat1x4 color1, color2, color3;  // contains color of each vertex
 } polygon;
 ```
+
+# TODO #
+1. Create more examples
+2. Rewrite some code on Assembler to optimize
+3. Add multi threading
