@@ -24,7 +24,7 @@ Prefix may be:
 
 Graphic module contains several structures, whitch contains graphic data:
     1. graphic_state - contains general data, neccesary to render image:
-        ```C
+        ```
         typedef struct {
             float screen_dst;           // distance to screen in 3D space
             float fov_x, fov_y;         // Field of view in radians
@@ -41,7 +41,7 @@ Graphic module contains several structures, whitch contains graphic data:
         ```
     
     2. thread_worker - contains data using to render polygon. Neccesary to use multi-threading in future:
-        ```C
+        ```
         typedef struct {
             graphic_state *screen;      // pointer to general data
 
@@ -52,7 +52,7 @@ Graphic module contains several structures, whitch contains graphic data:
         ```
 
     3. polygon - contains polygon data:
-        ```C
+        ```
         typedef struct {
             mat4x4 vertex;                  // contains three vertex of polygon
             mat1x4 color1, color2, color3;  // contains color of each vertex
