@@ -1,15 +1,15 @@
-## Point ##
+# Point #
 
 Point of this project is educate how to works 3D graphic.
 This project be intresting to people, who wants learn how it works on practice.
 
-## Architecture ##
+# Architecture #
 
 This project divided by modules:
 1. math and matrix module.
 2. graphic module.
 
-# Matrix #
+## Matrix ##
 
 We have two size of matrix - 4x4 and 1x4, and functions who works with them.
 Naming of this functions must be like structure:
@@ -20,7 +20,7 @@ Prefix may be:
 - v - vector, input operands will be not erased
 - m - math, operation will be math correct
 
-# Graphic #
+## Graphic ##
 
 Graphic module contains several structures, whitch contains graphic data:
 1. graphic_state - contains general data, neccesary to render image:
